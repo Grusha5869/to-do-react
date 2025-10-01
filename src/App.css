@@ -10,6 +10,7 @@ body {
     height: 100vh;
     background-color: var(--primary-light);
     margin: 0;
+    padding: 15px 10px;
 }
 * {
     box-sizing: border-box;
@@ -31,12 +32,20 @@ body {
     height: 58px;
     padding: 0 10px;
 }
-.to-do-btn__img {
-    width: 32px;
-    height: 32px;
-}
 .to-do-btn {
     background: transparent;
     border: none;
     cursor: pointer;
+}
+.to-do-btn__img {
+    width: 32px;
+    height: 32px;
+}
+.to-do-title {
+    font-size: 2em;
+    font-weight: 500;
+}
+.to-do-info-proj {
+    margin-top: 15px;
+    padding: 10px;
 }
