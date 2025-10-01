@@ -1,0 +1,42 @@
+:root {
+    --primary: #49ff8c;    /* Натуральный зеленый */
+    --primary-light: #c6f1d5;
+    --secondary: #ca8a04;  /* Тёплый желтый */
+    --accent: #ea580c;     /* Терракотовый акцент */
+    --neutral: #57534e;    /* Neutral brown-gray */
+    --light: #faf7f5;      /* Кремовый фон */
+}
+body {
+    height: 100vh;
+    background-color: var(--primary-light);
+    margin: 0;
+}
+* {
+    box-sizing: border-box;
+    font-family: 'Inter';
+}
+.container {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+}
+.to-do-base {
+    background-color: var(--light);
+    border-radius: 5px;
+}
+.to-do-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 58px;
+    padding: 0 10px;
+}
+.to-do-btn__img {
+    width: 32px;
+    height: 32px;
+}
+.to-do-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
