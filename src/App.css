@@ -55,6 +55,11 @@ ul {
 .to-do-info-proj {
     margin-top: 15px;
     padding: 10px;
+    opacity: 0;
+}
+.animOpacity {
+    transition: all 0.5s ease;
+    opacity: 1;
 }
 .title {
     display: flex;

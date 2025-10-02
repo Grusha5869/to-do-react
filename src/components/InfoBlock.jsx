@@ -1,7 +1,15 @@
+import { useState ,useEffect } from 'react'
 import InfoBtn from './Info-btn'
 export default function InfoBlock({showInfo, setShowInfo}) {
+    const [className, setClassName] = useState('to-do-base to-do-info-proj')
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setClassName('to-do-base to-do-info-proj animOpacity')
+        }, 100)
+        return () => clearTimeout(timer)
+    }, []);
     return (
-        <div className="to-do-base to-do-info-proj">
+        <div className={className}>
             <div className="title">
                 <h1>To-Do список дел</h1>
                 <InfoBtn src='src/assets/watch_15501836.png' alt='О проекте' onClick={() => setShowInfo(!showInfo)} title='Скрыть' />
