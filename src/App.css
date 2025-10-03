@@ -69,3 +69,44 @@ ul {
     margin-top: 10px;
     font-weight: 500;
 }
+.input-group {
+    display: flex;
+    margin-top: 15px;
+}
+.input-group__user-input {
+    width: 95%;
+    height: 46px;
+    font-size: 15px;
+    padding: 5px 10px;
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.input-group__btn {
+    padding: 6px;
+    border: none;
+    border-radius: 5px;
+    width: 50px;
+    cursor: pointer;
+    background-color: var(--light);
+}
+.add {
+    position: relative;
+}
+.add__base {
+    background-color: black;
+}
+.add1 {
+    position: absolute;
+    width: 2px;
+    height: 25px;
+    top: -12px;
+    right: 17px;
+}
+.add2 {
+    position: absolute;
+    height: 2px;
+    width: 25px;
+    top: -1px;
+    right: 6px;
+}
