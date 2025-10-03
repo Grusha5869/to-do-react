@@ -7,7 +7,7 @@ export default function InfoBlock({showInfo, setShowInfo}) {
             setClassName('to-do-base to-do-info-proj animOpacity')
         }, 100)
         return () => clearTimeout(timer)
-    }, []);вв
+    }, []);
     return (
         <div className={className}>
             <div className="title">
