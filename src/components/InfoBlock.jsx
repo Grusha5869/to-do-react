@@ -21,6 +21,8 @@ export default function InfoBlock({showInfo, setShowInfo}) {
             <strong className='info-function__title'>Основные функции:</strong>
             <ul className="info-function">
                 <li>Создание и удаление задач: Легко добавляйте и удаляйте новые задачи</li>
+                <li>Помечайте выполненные задачи</li>
+                <li>Редактируйте свои задачи!</li>
                 <li>Интерфейс: Простой и понятный интерфейс, который доступен на разных устройствах.</li>
             </ul>
         </div>

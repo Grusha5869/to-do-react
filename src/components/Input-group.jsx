@@ -4,7 +4,6 @@ import ListGroup from './List-group'
 
 export default function InputGroup({placeholder, type}) {
     const [items, setItems] = useState(getLocalStorage('tasks') || [])
-    const [check, setCheck] = useState(false)
     const inputRef = useRef(null)
     function onKeyDownEnter(event) {
         if (event.key === 'Enter') {
@@ -66,6 +65,8 @@ export default function InputGroup({placeholder, type}) {
                         }}
                         onRemove={() => removeItem(item.id)}
                         completed={item.completed}
+                        items={items}
+                        setItems={setItems}
                      />
                 ))}
             </div>
