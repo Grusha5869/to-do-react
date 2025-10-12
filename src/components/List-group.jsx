@@ -45,7 +45,7 @@ export default function ListGroup({content, onClick, onRemove, completed, items,
     }
 
     return (
-        <div className="list-elem" style={{opacity: completed ? '0.8' : '1'}}>
+        <div className="list-elem" style={{opacity: completed ? '0.5' : '1'}}>
             <div className="list-elem__wrapper">
                 {edit ? (
                     <input 

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import InfoBtn from './components/Info-btn'
 import InfoBlock from './components/InfoBlock'
-import InputGroup from './components/Input-group'
+import TaskGroup from './components/Input-group'
 
 function App() {
   const [showInfo, setShowInfo] = useState(false);
@@ -17,7 +17,7 @@ function App() {
         {showInfo && (
           <InfoBlock showInfo={showInfo} setShowInfo={setShowInfo}/>
         )}
-        <InputGroup placeholder='Напишите что-нибудь' type='text' />
+        <TaskGroup placeholder='Напишите что-нибудь' type='text' />
       </div>
 
       

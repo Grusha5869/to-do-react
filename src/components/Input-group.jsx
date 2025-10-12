@@ -3,7 +3,8 @@ import BtnInputGroup from './Input-group-btn'
 import ListGroup from './List-group'
 
 export default function InputGroup({placeholder, type}) {
-    const [items, setItems] = useState(getLocalStorage('tasks') || [])
+    const [items, setItems] = useState(getLocalStorage('tasks') || []);
+    const [drop, setDrop] = useState(false);
     const inputRef = useRef(null)
     function onKeyDownEnter(event) {
         if (event.key === 'Enter') {
@@ -55,6 +56,10 @@ export default function InputGroup({placeholder, type}) {
                 </input>
                 <BtnInputGroup onClick={addItem} />
             </div>
+            <button className="to-do-sort">Сортировка: По умолчанию
+                <img className='to-do-sort__img' src="src/assets/angle_down-48_46776.png" alt="" />
+            </button>
+            {}
             <div className="list-group">
                 {items.map((item) => (
                     <ListGroup 
