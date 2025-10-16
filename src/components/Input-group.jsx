@@ -1,10 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import BtnInputGroup from './Input-group-btn'
 import ListGroup from './List-group'
+import SortBtn from './Sort-btn'
+import SortDrop from './Sort-drop'
 
 export default function InputGroup({placeholder, type}) {
     const [items, setItems] = useState(getLocalStorage('tasks') || []);
+    //const [defItems, setDefItems] = useState
     const [drop, setDrop] = useState(false);
+    const [textContent, setTextContent] = useState();
     const inputRef = useRef(null)
     function onKeyDownEnter(event) {
         if (event.key === 'Enter') {
@@ -42,7 +46,6 @@ export default function InputGroup({placeholder, type}) {
 
     useEffect(() => {
         setLocalStorage('tasks', items)
-        
     }, [items])
     return (
         <>
@@ -56,14 +59,28 @@ export default function InputGroup({placeholder, type}) {
                 </input>
                 <BtnInputGroup onClick={addItem} />
             </div>
-            <button className="to-do-sort">Сортировка: По умолчанию
-                <img className='to-do-sort__img' src="src/assets/angle_down-48_46776.png" alt="" />
-            </button>
-            {}
+            <div className="sort-drop">
+                <SortBtn 
+                    onClick={() => setDrop(!drop)}
+                    textContent={textContent}
+                    setTextContent={setTextContent}
+                />
+                {drop && (
+                    <SortDrop
+                        items={items}
+                        setItems={setItems}
+                        drop={drop}
+                        setDrop={setDrop}
+                        textContent={textContent}
+                        setTextContent={setTextContent}
+                    />
+                )}
+            </div>
             <div className="list-group">
                 {items.map((item) => (
                     <ListGroup 
                         key={item.id} 
+                        identif={item.id}
                         content={item.text} 
                         onClick={() => {
                             completedTask(item.id)

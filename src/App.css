@@ -50,10 +50,18 @@ p {
     background: transparent;
     border: none;
     cursor: pointer;
+    width: 50px;
 }
 .to-do-btn__img {
     width: 32px;
     height: 32px;
+}
+.to-do-btn-deadline__img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
 }
 .to-do-title {
     font-size: 2em;
@@ -93,7 +101,7 @@ p {
     padding: 6px;
     border: none;
     border-radius: 5px;
-    width: 50px;
+    width: 45px;
     cursor: pointer;
     background-color: var(--primary-light);
 }
@@ -151,6 +159,11 @@ p {
 .list-elem__wrapper-btn {
     display: flex;
 }
+.sort-drop {
+    display: inline-block;
+
+    position: relative;
+}
 .to-do-sort {
     display: flex;
     gap: 5px;
@@ -162,6 +175,7 @@ p {
     transition: all 0.2s ease;
     cursor: pointer;
     background: linear-gradient(to right, var(--primary-light), var(--primary));
+    width: 100%;
 }
 .to-do-sort:hover {
     box-shadow: 0 20px 25px rgba(0, 0, 0, 0.10), 0 10px 10px rgba(0, 0, 0, 0.10);
@@ -169,4 +183,44 @@ p {
 .to-do-sort__img {
     width: 20px;
     height: 20px;
+}
+.sort-drop-wrapper {
+    display: inline-block;
+    position: absolute;
+    background-color: var(--primary-light);
+    padding: 10px;
+    text-align: center;
+    z-index: 1000;
+    top: 100%;
+    width: 100%;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.10), 0 10px 10px rgba(0, 0, 0, 0.10);
+
+}
+.open {
+    animation-name: sort-drop;
+    animation-duration: 3s;
+}
+.close {
+    animation-name: sort-drop-reverse;
+    animation-duration: 3s;
+}
+.sort-drop-wrapper__btn {
+    display: flex;
+    position: relative;
+    gap: 5px;
+    padding: 5px 10px;
+    background-color: var(--primary-light);
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.sort-hr {
+    border-color: var(--primary);
+}
+.input-deadline {
+    padding: 5px;
+    width: 100px;
 }
