@@ -132,13 +132,15 @@ p {
     gap: 15px;
 }
 .list-elem {
+    background-color: var(--primary-light);
+    border-radius: 5px;
+}
+.top {
     display: flex;
+    padding: 15px;
     align-items: center;
     justify-content: space-between;
     word-break: break-all;
-    background-color: var(--primary-light);
-    border-radius: 5px;
-    padding: 15px;
 }
 .list-elem__wrapper {
     display: flex;
@@ -151,7 +153,7 @@ p {
     accent-color: var(--primary-light)
 }
 .list-elem__input {
-    width: 500px;
+    width: 400px;
     font-size: 15px;
     margin-left: 16px;
     border: none;
@@ -223,4 +225,19 @@ p {
 .input-deadline {
     padding: 5px;
     width: 100px;
+}
+.time-deadline {
+    min-width: 95px;
+    font-size: 14px;
+    display: flex; 
+    align-items: center;
+    gap: 3px;
+}
+.time-deadline-imoji {
+    height: 60%;
+}
+.scale-progress {
+    height: 5px;
+    background-color: var(--warning);
+    
 }

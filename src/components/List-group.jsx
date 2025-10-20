@@ -12,7 +12,14 @@ export default function ListGroup({identif, content, onClick, onRemove, complete
     const [inputDd, setInputDd] = useState(false)
     const [inputValueDd, setInputValueDd] = useState('')
     const inputDdRef = useRef(null)
+    const currentItem = items.find(item => item.id === identif)
+    const [dateDd, setDateDd] = useState(currentItem?.deadline || null)
 
+
+    useEffect(() => {
+        const item = items.find(item => item.id === identif)
+        setDateDd(item?.deadline || null)
+    }, [items, identif])
     useEffect(() => {
         if (edit && inputRef.current) {
             inputRef.current.focus()
@@ -25,6 +32,18 @@ export default function ListGroup({identif, content, onClick, onRemove, complete
             inputDdRef.current.select()
         }
     }, [inputDd])
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const now = new Date().getTime()
+            const date = new Date(dateDd).getTime()
+            const difference = date - now
+            if (difference >= 0) {
+                removeDeadline()
+            }
+        }, 60 * 60 * 1000)
+
+        return () => clearInterval(interval)
+    }, [dateDd])
 
     function onKeyDownEnterListInput(event) {
         if (event.key === 'Enter') {   
@@ -69,6 +88,7 @@ export default function ListGroup({identif, content, onClick, onRemove, complete
             setInputValueDd(value)
             inputDdRef.current.style.border = ''
             setInputDd(false)
+            setDateDd(true)
         } else {
             inputDdRef.current.style.border = '1px solid red'
         }
@@ -76,69 +96,81 @@ export default function ListGroup({identif, content, onClick, onRemove, complete
     function onBlurDeadline() {
         setInputDd(false)
     }
+    function removeDeadline() {
+        setDateDd(false)
+        setItems(prevItems => prevItems.map(item => 
+            identif === item.id ? {...item, deadline: null} : item 
+        ))
+    }
     return (
         <div className="list-elem" style={{opacity: completed ? '0.5' : '1'}}>
-            <div className="list-elem__wrapper">
-
-                {edit ? (
-                    <input 
-                        ref={inputRef}
-                        type="text"
-                        name='list-input'
-                        className="list-elem__input"  
-                        value={valueMain}
-                        onChange={event => setValueMain(event.target.value)}
-                        onKeyDown={event => onKeyDownEnterListInput(event)}
-                        onBlur={onBlurEdit}
-                    />
-                ) : (
-                    <>
+            <div className="top">
+                <div className="list-elem__wrapper">
+                    {edit ? (
                         <input 
-                            type="checkbox" 
-                            name="list-checkbox" className="list-elem__checkbox" 
-                            checked={completed} 
-                            onChange={onClick}
+                            ref={inputRef}
+                            type="text"
+                            name='list-input'
+                            className="list-elem__input"  
+                            value={valueMain}
+                            onChange={event => setValueMain(event.target.value)}
+                            onKeyDown={event => onKeyDownEnterListInput(event)}
+                            onBlur={onBlurEdit}
                         />
-                    
-                        <p 
-                            style={{
-                                textDecoration: completed ? 'line-through' : 'none'
-                            }} 
-                            className="list-elem__text"
-                            onClick={onClick}
-                        >{content}</p>
-                    </>
-                )}
-
-                
-            </div>
+                    ) : (
+                        <>
+                            <input 
+                                type="checkbox" 
+                                name="list-checkbox" className="list-elem__checkbox" 
+                                checked={completed} 
+                                onChange={onClick}
+                            />
+                        
+                            <p 
+                                style={{
+                                    textDecoration: completed ? 'line-through' : 'none'
+                                }} 
+                                className="list-elem__text"
+                                onClick={onClick}
+                            >{content}</p>
+                        </>
+                    )}  
+                </div>
             
-            <div className="list-elem__wrapper-btn">
-                {inputDd ? (
-                    <CalendarDeadline
-                        type={'date'}
-                        ref={inputDdRef}
-                        onChange={event => handleChange(event)}
-                        onBlur={onBlurDeadline}
-                        value={inputValueDd}
-                    />
-                ) : (
-                    <DeadlineBtn 
-                        src='src/assets/deadline.svg'
-                        alt='Запланировать задачу'
-                        title='Запланировать задачу'
-                        onClick={() => completed ? setInputDd(false) : setInputDd(!inputDd)}
-                    />
-                )}
+                <div className="list-elem__wrapper-btn">
+                    {dateDd && (
+                        <div onDoubleClick={removeDeadline} className="time-deadline">
+                            <span className='time-deadline-imoji'>📅</span>
+                            {inputValueDd ? inputValueDd : dateDd}
+                        </div>
+                    )}
+                    {inputDd ? (
+                        <CalendarDeadline
+                            type={'date'}
+                            ref={inputDdRef}
+                            onChange={event => handleChange(event)}
+                            onBlur={onBlurDeadline}
+                            value={inputValueDd}
+                        />
+                    ) : (
+                        <DeadlineBtn 
+                            src='src/assets/deadline.svg'
+                            alt='Запланировать задачу'
+                            title='Запланировать задачу'
+                            onClick={() => completed ? setInputDd(false) : setInputDd(!inputDd)}
+                        />
+                    )}
 
-                <EditBtn 
-                    src='src/assets/353430-checkbox-edit-pen-pencil_107516.svg' alt='Редактировать задачу'
-                    title='Редактировать задачу'
-                    onClick={() => setEdit(!edit)}
-                />
+                    <EditBtn 
+                        src='src/assets/353430-checkbox-edit-pen-pencil_107516.svg' alt='Редактировать задачу'
+                        title='Редактировать задачу'
+                        onClick={() => setEdit(!edit)}
+                    />
 
-                <RemoveBtn style={{transform: 'rotate(45deg)'}} onClick={onRemove} title={'Удалить задачу'} />
+                    <RemoveBtn style={{transform: 'rotate(45deg)'}} onClick={onRemove} title={'Удалить задачу'} />
+                </div>
             </div>
         </div>
+        
     )
 }

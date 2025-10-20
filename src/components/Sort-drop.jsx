@@ -28,12 +28,28 @@ export default function SortDrop({items, setItems, drop, setDrop, textContent, s
             return 0;
         }))
     }
+    function nearestDeadline() {
+        handleClick('По дедлайну');
+        setItems([...items].sort((a, b) => {
+            if (a.deadline === null) return 1
+            if (b.deadline === null) return -1
+            return new Date(a.deadline) - new Date(b.deadline);
+        }))
+    }
+    function farthestDeadline() {
+        handleClick('По дедлайну');
+        setItems([...items].sort((a, b) => {
+            if (a.deadline === null) return 1
+            if (b.deadline === null) return -1
+            return new Date(b.deadline) - new Date(a.deadline);
+        }))
+    }
 
     return (
         <div className='sort-drop-wrapper'>
             <Button 
                 text={'По умолчанию'}
-                onClick={() => handleClick('По умолчанию')}
+                onClick={(dataSortLess)}
             />
             <hr className='sort-hr'/>
             <span>По дате</span>
@@ -58,12 +74,12 @@ export default function SortDrop({items, setItems, drop, setDrop, textContent, s
             <hr className='sort-hr'/>
             <span>По дедлайну</span>
             <Button 
-                text={'Сначала новые'}
-                onClick={() => handleClick('По дедлайну')}
+                text={'Ближайшие'}
+                onClick={nearestDeadline}
             />
             <Button 
-                text={'Сначала старые'}
-                onClick={() => handleClick('По дедлайну')}
+                text={'Дальнейшие'}
+                onClick={farthestDeadline}
             />
         </div>
     )

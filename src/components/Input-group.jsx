@@ -6,7 +6,6 @@ import SortDrop from './Sort-drop'
 
 export default function InputGroup({placeholder, type}) {
     const [items, setItems] = useState(getLocalStorage('tasks') || []);
-    //const [defItems, setDefItems] = useState
     const [drop, setDrop] = useState(false);
     const [textContent, setTextContent] = useState();
     const inputRef = useRef(null)
@@ -21,7 +20,8 @@ export default function InputGroup({placeholder, type}) {
             setItems(prevItems => [...prevItems, {
                 id: Date.now().toString(),
                 text: inputValue,
-                completed: false
+                completed: false,
+                deadline: null
             }])
             inputRef.current.value = '';
             inputRef.current.style.border = ''
@@ -40,13 +40,14 @@ export default function InputGroup({placeholder, type}) {
     }
     function completedTask(id) {
         setItems(prevItems => prevItems.map(item => 
-            item.id === id ? { ...item, completed: !item.completed } : item
+            item.id === id ? { ...item, completed: !item.completed, deadline: null} : item
         ));
     }
 
     useEffect(() => {
         setLocalStorage('tasks', items)
     }, [items])
+    
     return (
         <>
             <div className="input-group">
