@@ -12,7 +12,7 @@ function App() {
       <div className="container">
         <div className="to-do-base to-do-head">
           <span className="to-do-title">To Do</span>
-          <InfoBtn src='src/assets/information_1843058.png' alt='О проекте' onClick={() => setShowInfo(!showInfo)} title='О проекте' />
+          <InfoBtn src='/images/information_1843058.png' alt='О проекте' onClick={() => setShowInfo(!showInfo)} title='О проекте' />
         </div>
         {showInfo && (
           <InfoBlock showInfo={showInfo} setShowInfo={setShowInfo}/>

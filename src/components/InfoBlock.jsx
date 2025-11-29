@@ -14,7 +14,7 @@ export default function InfoBlock({showInfo, setShowInfo}) {
         <div className={className}>
             <div className="title">
                 <h1>To-Do список дел</h1>
-                <InfoBtn src='src/assets/watch_15501836.png' alt='О проекте' onClick={() => setShowInfo(!showInfo)} title='Скрыть' />
+                <InfoBtn src='/images/watch_15501836.png' alt='О проекте' onClick={() => setShowInfo(!showInfo)} title='Скрыть' />
             </div>
             <p className="text-info">Сервис "Список дел" — это удобное и интуитивно понятное приложение, которое поможет вам организовать свои задачи и повысить продуктивность. <br /> <br />
             С его помощью вы сможете создавать, редактировать и удалять задачи, а также отслеживать прогресс.</p>

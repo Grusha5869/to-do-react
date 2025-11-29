@@ -154,7 +154,7 @@ export default function ListGroup({identif, content, onClick, onRemove, complete
                         />
                     ) : (
                         <DeadlineBtn 
-                            src='src/assets/deadline.svg'
+                            src='/images/deadline.svg'
                             alt='Запланировать задачу'
                             title='Запланировать задачу'
                             onClick={() => completed ? setInputDd(false) : setInputDd(!inputDd)}
@@ -162,7 +162,7 @@ export default function ListGroup({identif, content, onClick, onRemove, complete
                     )}
 
                     <EditBtn 
-                        src='src/assets/353430-checkbox-edit-pen-pencil_107516.svg' alt='Редактировать задачу'
+                        src='/images/353430-checkbox-edit-pen-pencil_107516.svg' alt='Редактировать задачу'
                         title='Редактировать задачу'
                         onClick={() => setEdit(!edit)}
                     />
